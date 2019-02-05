@@ -34,21 +34,13 @@ int main(int argc, char *argv[]){
 
 	chiffre = (char *)malloc(8+strlen(texte) * sizeof(char));
 	dechiffre = (char *)malloc(8+strlen(texte) * sizeof(char));
-	printf("----------------   XOR --------------\n");
-	xor_crypt("une cle", texte,chiffre);
-	xor_decrypt("une cle", chiffre, dechiffre);
-	printf("'%s'\n",chiffre);
-	printf("'%s'\n",dechiffre);
-	printf("%s\n", strcmp(texte, dechiffre)==0?"ok":"NON");
-
-	chiffre = (char *)malloc(8+strlen(texte) * sizeof(char));
-	dechiffre = (char *)malloc(8+strlen(texte) * sizeof(char));
 	printf("----------------   CESAR --------------\n");
 	cesar_crypt(2, texte,chiffre);
 	printf("'%s'\n",chiffre);
 	cesar_decrypt(2, chiffre, dechiffre);
 	printf("'%s'\n",dechiffre);
 	printf("%s\n", strcmp(texte, dechiffre)==0?"ok":"NON");
+
 
 	chiffre = (char *)malloc(8+strlen(texte) * sizeof(char));
 	dechiffre = (char *)malloc(8+strlen(texte) * sizeof(char));
@@ -58,34 +50,6 @@ int main(int argc, char *argv[]){
 	printf("'%s'\n",chiffre);
 	printf("'%s'\n",dechiffre);
 	printf("%s\n", strcmp(texte, dechiffre)==0?"ok":"NON");
-
-	chiffre = (char *)malloc(8+strlen(texte) * sizeof(char));
-	dechiffre = (char *)malloc(8+strlen(texte) * sizeof(char));
-	printf("----------------   DES --------------\n");
-	des_crypt("chabada", texte,chiffre,size);
-	des_decrypt("chabada", chiffre, dechiffre, size);
-	printf("'%s'\n",chiffre);
-	printf("'%s'\n",dechiffre);
-	printf("%s\n", strcmp(texte, dechiffre)==0?"ok":"NON");
-
-	chiffre = (char *)malloc(8+strlen(texte) * sizeof(char));
-	dechiffre = (char *)malloc(8+strlen(texte) * sizeof(char)); 
-	printf("----------------   3DES --------------\n");
-	tripledes_crypt("chabada", "chibidi", texte,chiffre, size);
-	tripledes_decrypt("chabada", "chibidi", chiffre, dechiffre, size);
-	printf("'%s'\n",chiffre);
-	printf("'%s'\n",dechiffre);
-	printf("%s\n", strcmp(texte, dechiffre)==0?"ok":"NON");
-
-	chiffre = (char *)malloc(3*strlen(texte) * sizeof(char));
-	dechiffre = (char *)malloc(3*strlen(texte) * sizeof(char)); 
-	printf("----------------   RSA --------------\n");
-	rsa_crypt(7, 5141, texte, chiffre, strlen(texte));
-	rsa_decrypt(4279, 5141,  chiffre, dechiffre);
-	printf("'%s'\n",chiffre);
-	printf("'%s'\n",dechiffre);
-	printf("%s\n", strcmp(texte, dechiffre)==0?"ok":"NON");
-
 
 	fclose (pFile);  // ferme le flux et
 	free(texte); // libère espace tampon
