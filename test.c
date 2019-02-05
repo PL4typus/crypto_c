@@ -9,50 +9,24 @@
  *    *
  *     */
 int main(int argc, char *argv[]){
-	FILE* pFile;
-	long lsize;
-	char* texte;
-	char* chiffre;
-	char* dechiffre;
-	int size;
+  char* chiffre;
+  char* dechiffre;
+  char* chiffre_to_bf;
+  FILE* f;
+  char** dictionnary;
 
-	pFile = fopen( argv[1] , "rb");
-	if (pFile == NULL) return 1;
+  printf("----------------   CESAR --------------\n");
+  chiffre_to_bf = "carhzbabhygenzvpebfpbcvpfvyvpbibypnabpbavbfvf";
+  printf("\nBruteforcing given sentence: %s\n",chiffre_to_bf);
+  chiffre = (char *)malloc(8+strlen(chiffre_to_bf) * sizeof(char));
+  dechiffre = (char *)malloc(8+strlen(chiffre_to_bf) * sizeof(char));
+  strcpy(chiffre, chiffre_to_bf);
+  cesar_bruteforce(chiffre, dechiffre);
 
-	fseek (pFile, 0 , SEEK_END);  // Obtient la taille du fichier
-	lsize = ftell (pFile);
-	rewind (pFile);
+  printf("----------------   VIGENRE --------------\n");
+  chiffre_to_bf =  "no vveaqkac hs vbxijlbys c lfv owcu"
 
-	texte = (char*) malloc (lsize+1);   //Alloue mémoire pour le tampon, de la taille du fichier
-	if (texte ==  NULL) return 2;
-
-	fread (texte, 1, lsize, pFile); // copie fichier vers tampon
-	texte[lsize]='\0';
-        
-	size = (strlen(texte)+7)/8;
-
-
-	chiffre = (char *)malloc(8+strlen(texte) * sizeof(char));
-	dechiffre = (char *)malloc(8+strlen(texte) * sizeof(char));
-	printf("----------------   CESAR --------------\n");
-	cesar_crypt(2, texte,chiffre);
-	printf("'%s'\n",chiffre);
-	cesar_decrypt(2, chiffre, dechiffre);
-	printf("'%s'\n",dechiffre);
-	printf("%s\n", strcmp(texte, dechiffre)==0?"ok":"NON");
-
-
-	chiffre = (char *)malloc(8+strlen(texte) * sizeof(char));
-	dechiffre = (char *)malloc(8+strlen(texte) * sizeof(char));
-	printf("----------------   VIGENRE --------------\n");
-	viginere_crypt("abc", texte,chiffre);
-	viginere_decrypt("abc", chiffre, dechiffre);
-	printf("'%s'\n",chiffre);
-	printf("'%s'\n",dechiffre);
-	printf("%s\n", strcmp(texte, dechiffre)==0?"ok":"NON");
-
-	fclose (pFile);  // ferme le flux et
-	free(texte); // libère espace tampon
-
-	return 0;
+  fclose (pFile);  // ferme le flux et
+  free(texte); // libère espace tampon
+  return 0;
 }

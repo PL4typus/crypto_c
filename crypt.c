@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <string.h>
 #include "crypt.h"
-#include "encrypt.h"
 #include <math.h>
 
 
@@ -50,6 +49,15 @@ void cesar_decrypt(int decallage, char * texte, char* chiffre)
     }
 
 }
+
+void cesar_bruteforce(char* chiffre, char* clair){
+  int i;
+  for(i = 0;i<=25; i++){
+    cesar_decrypt(i, chiffre, clair);
+    printf("key = %i \t%s\n",i,clair);
+  }
+}
+
 
 /**
  *  * chiffrement utilisant viginere
@@ -109,4 +117,11 @@ void viginere_decrypt(char * key, char * texte, char* chiffre)
     
 }
 
+void viginere_bruteforce(char** dictionnary,int dic_size, char* texte, char* chiffre){
+  int i;
+  for(i=0;i<dic_size;i++){
+    viginere_decrypt(dictionnary[i], texte, chiffre);
+    printf("%s\t %s\n",key, chiffre);
+  }
+}
 
