@@ -23,4 +23,7 @@ void viginere_crypt(char* key, char* texte, char* chiffre);
  *   */
 void viginere_decrypt(char* key, char* chiffre, char* clair);
 
-void viginere_bruteforce(FILE* dictionnary, char* texte, char* chiffre);
+/**
+ *  Bruteforce viginere
+ *  */
+void viginere_bruteforce(char** dictionnary,int dic_size, char* texte, char* chiffre);
